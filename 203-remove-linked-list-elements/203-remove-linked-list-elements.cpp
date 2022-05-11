@@ -27,8 +27,7 @@ public:
         if(head==NULL)return NULL;
         head->next = removeElements(head->next,val);
         if(head->val == val){
-            ListNode * ans = head;
-            ans = head->next;
+            ListNode * ans = head->next;
             delete head;
             return ans;
         }
