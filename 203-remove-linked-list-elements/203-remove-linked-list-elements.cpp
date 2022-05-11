@@ -10,29 +10,35 @@
  */
 class Solution {
 public:
-    ListNode* removeElements(ListNode* head, int val) {
-//         while(head!=nullptr && head->val==val){
-//             head = head->next;
-//         }
-//         ListNode *temp = head;
-//         while(temp!=NULL && temp->next!=NULL){
-//             if(temp->val == val){
-//                 temp->next = temp->next->next;
-//             }
-//             temp = temp->next;
-            
-//         }
-//         return head;
-//     }
-        if(head==NULL)return NULL;
-        head->next = removeElements(head->next,val);
-        if(head->val == val){
-            ListNode * ans = head->next;
-            delete head;
-            return ans;
+      ListNode* removeElements(ListNode* head, int val) {
+        if(head==nullptr) return head;
+		// This is for the case when a linked list is like this: 
+		// 1->1->2->null , val = 1
+		// 1->1->1->null , val = 1
+        while(head!=nullptr && head->val==val){
+            head = head->next;
         }
-        else{
-            return head;
+        ListNode* curr = head;
+        while(curr!=nullptr  && curr->next!=nullptr){
+            if(curr->next->val==val){
+                curr->next = curr->next->next;
+				// After doing the above step, I am not updating "curr" because of these type of test cases:
+				// 1->2->3->6->6->6->5->null  val = 6
+            }
+            else
+                curr = curr->next;
         }
+        return head;
     }
+    //     if(head==NULL)return NULL;
+    //     head->next = removeElements(head->next,val);
+    //     if(head->val == val){
+    //         ListNode * ans = head->next;
+    //         delete head;
+    //         return ans;
+    //     }
+    //     else{
+    //         return head;
+    //     }
+    // }
 };
