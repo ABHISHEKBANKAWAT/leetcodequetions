@@ -13,6 +13,9 @@ public:
     ListNode* oddEvenList(ListNode* head) {
         ListNode * oddh=NULL, *oddt=NULL, *event=NULL,*evenh=NULL;
         int count = 1;
+        if(head==NULL){
+            return NULL;
+        }
         while(head!=NULL){
             if(count%2==0){
                 if(evenh==NULL){
@@ -39,9 +42,7 @@ public:
             }
             count++;
         }
-        if(oddh==NULL){
-            return evenh;
-        }
+       
         if(evenh==NULL){
             return oddh;
         }
