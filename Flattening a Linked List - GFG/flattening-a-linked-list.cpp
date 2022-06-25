@@ -154,14 +154,10 @@ struct Node{
 Node *flatten(Node *root)
 {
    // Your code here
-   
-   if(root->next==NULL || root==NULL)
+   if(root==NULL)
+   return NULL;
+   if(root->next==NULL)
    return root;
-   Node * head = root,*ptr = root->next;
-   while(ptr){
-   head = mergelist(head,ptr);
-   ptr = ptr->next;
-   }
-   return head;
+   return mergelist(root,flatten(root->next));
 }
 
