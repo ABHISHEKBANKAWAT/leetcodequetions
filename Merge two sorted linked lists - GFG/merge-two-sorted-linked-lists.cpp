@@ -84,47 +84,46 @@ struct Node {
 Node* sortedMerge(Node* head1, Node* head2)  
 {  
     // code here
-    Node *fh=NULL, *ft=NULL;
-        if(head1 == NULL) {
-            return head2;
-        }
-        if(head2 == NULL) {
-            return head1;
-        }
-    while(head1!=NULL && head2!=NULL){
-        
-        if(fh== NULL && ft==NULL){
-            if(head1->data>head2->data){
-                fh=head2;
-                ft=head2;
-                head2=head2->next;
-            }else{
-                fh=head1;
-                ft=head1;
-                head1=head1->next;
-            }
-        }else{
-            
-        if(head1->data < head2->data){
-            ft->next=head1;
-            ft=ft->next;
-            head1=head1->next;
-            
-        }else {
-            ft->next=head2;
-            ft=ft->next;
-            head2=head2->next;
-        }   
-        }
-        
+    Node* finalhead = NULL;
+  Node * finaltail = NULL;
+  while(head1!=NULL && head2!=NULL)
+  {
+    if(finalhead==NULL && finaltail==NULL)
+    {
+      if(head1->data<head2->data)
+      {
+        finalhead = head1;
+        finaltail = head1;
+        head1 = head1->next;
+      }
+      else{
+        finalhead = head2;
+        finaltail = head2;
+        head2 = head2->next;
+      }
+      
     }
-    
-    if(head1!=NULL){
-        ft->next=head1;
+    else{
+    if(head1->data<head2->data)
+    {
+      finaltail->next = head1;
+      finaltail = finaltail->next;
+      head1= head1->next;
     }
-    if(head2!=NULL){
-        ft->next=head2;
+   else {
+      finaltail->next = head2;
+      finaltail = finaltail->next;
+      head2 = head2->next;
     }
-    
-    return fh;
+  }
+  }
+  if(head1!=NULL)
+  {
+    finaltail->next = head1;
+   }
+  if(head2!=NULL)
+  {
+    finaltail->next = head2;
+  }
+  return finalhead;
 }  
