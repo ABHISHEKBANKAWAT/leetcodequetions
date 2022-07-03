@@ -1,17 +1,21 @@
 class Solution {
 public:
-    int getMaxDiff(vector<int>& v, int len) {
-        sort(v.begin(), v.end());
-        int max_diff = v[0];
+ int maxArea(int h, int w, vector<int>& horizontal, vector<int>& vertical) {
+        sort(begin(horizontal), end(horizontal));              // n(logn)
+        sort(begin(vertical), end(vertical));                       // n(logn)
         
-        for (int i = 1; i < v.size(); i++)
-            max_diff = max(max_diff, v[i]-v[i-1]);
+        long long hmx = 0, vmx = 0, prev = 0;
         
-        max_diff = max(max_diff, len - v.back());
-        return max_diff;
-    }
-    
-    int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
-        return (long)getMaxDiff(horizontalCuts, h) * getMaxDiff(verticalCuts, w) % 1000000007;
+        for(auto i: horizontal)                                          // O(n)  
+            hmx = max(hmx, i - prev), prev = i;
+        hmx = max(hmx, h - prev);
+        
+        prev = 0;
+        for(auto i: vertical)                                              // O(n)  
+            vmx = max(vmx, i - prev), prev = i;
+        vmx = max(vmx, w - prev);
+        
+        int mod = 1e9 + 7;
+        return hmx * vmx % mod;
     }
 };
