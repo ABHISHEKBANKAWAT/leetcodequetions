@@ -18,7 +18,7 @@ public:
                 swap(nums[m],nums[end]);
                 end--;
             }
-            else if(nums[m]==1)
+            else 
             {
                 m++;
             }
