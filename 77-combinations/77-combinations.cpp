@@ -8,6 +8,9 @@ public:
         if(i>n){  
         return;
     }
+     if(k>n-i+1){
+         return;
+     }
         subset.push_back(i);
         helper(i+1,n,k-1,subset,ans);
         
