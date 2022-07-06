@@ -1,10 +1,11 @@
 class Solution {
 public:
     void helper(int i,int n,int k,vector<int> &subset,vector<vector<int>> &ans)
-    {   if(i>n){
-        if(k==0){
+    {   if(k==0){
             ans.push_back(subset);
+        return;
         }
+        if(i>n){  
         return;
     }
         subset.push_back(i);
