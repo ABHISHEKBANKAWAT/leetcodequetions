@@ -17,5 +17,4 @@ public:
         while(b>=0)         A[i--]=B[b--];
         
          }
-    
 };
